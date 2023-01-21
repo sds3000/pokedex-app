@@ -7,13 +7,24 @@ const Search = (props) => {
         setQuery(event.target.value)
     };
 
+    console.log(props.pokemon)
     let submitQuery = event => {
         event.preventDefault();
-        props.onSubmit(query)
+        props.pokemonSearch(query) //runs pokemonSearch
         console.log(query)
     };
 
+    // if(props.pokemon.forms[0]){
+    //     return (
+    //         <img src={props.pokemon.forms}></img>
+            
+    //     )
+    // }else {
+        
+    // }
     return (
+    <div>
+        {/* <img src={props.pokemon.forms[0].url} height={200} width={200}></img> */}
         <form onSubmit={submitQuery} id="search">
             <input
                 type="text"
@@ -22,7 +33,10 @@ const Search = (props) => {
                 onChange={recordQuery}
             ></input>
         </form>
-    );
+    </div>
+
+    )
+    
 }
 
 export default Search
