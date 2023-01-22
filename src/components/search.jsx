@@ -24,7 +24,7 @@ const Search = (props) => {
     // }
     return (
     <div>
-        {/* <img src={props.pokemon.forms[0].url} height={200} width={200}></img> */}
+        {/* <img href={props.pokemon.forms[0].url} height={200} width={200}></img> */}
         <form onSubmit={submitQuery} id="search">
             <input
                 type="text"
@@ -33,6 +33,7 @@ const Search = (props) => {
                 onChange={recordQuery}
             ></input>
         </form>
+
     </div>
 
     )
