@@ -1,10 +1,9 @@
 DROP TABLE IF EXISTS pokemon;
 
-CREATE TABLE pokemon
+CREATE TABLE team
 (
   pokemon_id     SERIAL   PRIMARY KEY NOT NULL,
   name           TEXT       NOT NULL,
-  summary        TEXT,
   next_evolution TEXT      ,
   type_id        SERIAL     NOT NULL,
 );

@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import Search from './components/search.jsx'
 import Pokedex from './components/pokedex.jsx'
+import Team from './components/team'
 
 
 function App() {
@@ -21,13 +20,9 @@ function App() {
       console.log(pokemon)
   };
 
-  const handleSubmit = () => {
-    console.log('hi')
-  };
-
   return (
     <div className="App">
-      
+      <Team pokemon={pokemon}/>
       <Pokedex pokemon={pokemon} pokemonSearch={pokemonSearch}/>
     </div>
   )
