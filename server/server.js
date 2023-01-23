@@ -13,7 +13,7 @@ let port = process.env.PORT;
 
 app.use(express.json());
 app.use(cors()); //cross browser
-app.use(express.static('./src'));
+app.use(express.static('./src/components'));
 
 // ROUTES =====================================
 /*

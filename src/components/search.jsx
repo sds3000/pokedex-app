@@ -7,11 +7,10 @@ const Search = (props) => {
         setQuery(event.target.value)
     };
 
-    console.log(props.pokemon)
     let submitQuery = event => {
         event.preventDefault();
         props.pokemonSearch(query) //runs pokemonSearch
-        console.log(query)
+        
     };
 
     // if(props.pokemon.forms[0]){
@@ -24,7 +23,7 @@ const Search = (props) => {
     // }
     return (
     <div>
-        {/* <img href={props.pokemon.forms[0].url} height={200} width={200}></img> */}
+        
         <form onSubmit={submitQuery} id="search">
             <input
                 type="text"
