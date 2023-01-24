@@ -26,7 +26,7 @@ const Search = (props) => {
         
         <form onSubmit={submitQuery} id="search">
             <input
-                type="text"
+                
                 placeholder="Pokemon name"
                 value={query}// something else should go here
                 onChange={recordQuery}

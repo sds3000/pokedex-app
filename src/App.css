@@ -5,17 +5,34 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+input[type="text"] {
+  margin: 0;
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  font-family: 'Crimson Pro', sans-serif;
+  color: #888;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+input[type="text"]:focus {
+  color: #333;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* edit magic */
+input[type=text] {
+  display:none; 
 }
+
+td.editMode input[type=text] { 
+  display:block;
+}
+
+td.editMode label {
+  display:none;
+}
+
 
 @keyframes logo-spin {
   from {

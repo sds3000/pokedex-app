@@ -1,84 +1,65 @@
 import React from "react";
-import Search from "./search";
-
-/* 
-    Stores teams in database
-        - (possibly can add blurb on why you want that pokemon in the team)
-        - possibly can show best ev params
-    Add Pokemon from search to team 
-        - add button 
-        - make function
-        - bind function to button
-    show's pokemon items
-    shows pokemon curr EXP
-    shows pokemon known moves
-        - can enter pokemon's known moves
-
-    remove pokemon from team *need to add a id={props.pokemon} to each <td></td>
-        - make button 
-        - make function 
-            - how to grab DOM node? 
-                - 
-            - fetch request
-            - 
-        */
 
 const Team = (props) => {
-    const deletePoke = () => {
-        let tr = this.parentNode; // this is the delete button
-        let table = tr.parentNode;
-        fetch("./delete", {
-            method: "DELETE",
-            body: JSON.stringify({name: props.pokemon}),// sets the body of the request to pokemon name
-            headers: {"Content-Type": "application/json"}
-        })
-        table.removeChild(tr)
-    }
 
-    // display "No Pokemon Are Currently In Your Party"
     return (
         <div>
             <table id="team">
                 <tr>
                     <th>LVL</th>
                     <th>Name</th>
-                    <th>Type</th>
-                    <th>Total</th>
-                    <th>HP</th>
-                    <th>ATK</th>
-                    <th>DEF</th>
-                    <th>SP.ATK</th>
-                    <th>SP.DEF</th>
-                    <th>SPD</th>
-                    <th><div>Next Evolution</div><div>LVL</div></th>
-                    
+                    <th>move1</th>
+                    <th>move2</th>
+                    <th>move3</th>
+                    <th>move4</th>
                 </tr>
-                
-                    {fetch("/", {
-                        method: "GET"
-                    }).then(res => res.json()).then(data => {
-                        for(let i =0; i < data.length; i++){
-                            return(
-                                <tr>
-                                    <td>{data[i].lvl}</td>
-                                    <td>{data[i].name}</td>
-                                    <td>{data[i].type}</td>
-                                    <td>{data[i].total}</td>
-                                    <td>{data[i].hp}</td>
-                                    <td>{data[i].attack}</td>
-                                    <td>{data[i].defense}</td>
-                                    <td>{data[i].special_defense}</td>
-                                    <td>{data[i].special_attack}</td>
-                                    <button onClick={deletePoke}>Remove</button>
-                                    <button onClick={}>edit</button>
-                                </tr>
-                            )
-                        }
-                    })}
-                
+                {props.team.map(poke => {
+                    const deletePoke = () => {
+                        let td = document.getElementById(`${poke.pokemon_id}`)
+                        let tr = td.parentNode; // this is the delete button
+                        let table = tr.parentNode;
+                        fetch("http://localhost:4000/delete", {
+                            method: "DELETE",
+                            body: JSON.stringify({name: poke.name}),// sets the body of the request to pokemon name
+                            headers: {"Content-Type": "application/json"}
+                        })
+                    }
+                    const editPoke = () => {
+                        let td=document.querySelector(`#${poke.name}`);
+                        let editInput = listItem.querySelector("input[type=text]");
+                        let label = listItem.querySelector("label");
+                        
+                        fetch("http://localhost:4000/editpoke", {
+                            method: "PUT",
+                            body: JSON.stringify({name: poke.name, move1:poke.move1, edit:editInput.value}), //sets the body of the req
+                            headers: {"Content-Type": "application/json"} 
+                        }).then(res => res.json()).then((data) => {});
+                            let editMode = listItem.classList.contains("editMode")
+                            if(editMode){
+                                label.innerText=editInput.value;
+                            }else{
+                                editInput.value=label.innerText;
+                            }
+                        listItem.classList.toggle("editMode");
+                    }
+
+
+                    return (
+                        <tr id={poke.pokemon_id}>
+                            <td>{poke.lvl}<input type="text" /></td>
+                            <td>{poke.name}<input type="text" /></td>
+                            <td>{poke.move1}<input type="text" /></td>
+                            <td>{poke.move2}<input type="text" /></td>
+                            <td>{poke.move3}<input type="text" /></td>
+                            <td>{poke.move4}<input type="text" /></td>
+                            <button onClick={deletePoke} id={poke.pokemon_id}>Remove</button>
+                            <button onClick={editPoke} id={poke.pokemon_id}>Edit</button>
+                        </tr>
+                    )
+                })}
             </table>
         </div>
     )
 }
-
+    // display "No Pokemon Are Currently In Your Party"
 export default Team;

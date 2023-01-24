@@ -7,8 +7,14 @@ import Team from './components/team'
 function App() {
   
   const [pokemon, setPokemon] = useState({})
-  
-  
+  const [team, setTeam] = useState([])
+  fetch("http://localhost:4000/", {
+        method: "GET"
+    }).then(res => res.json())
+    .then(data => {
+        setTeam(data);
+        return data
+    })
   const pokemonSearch = (name) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     .then(response => response.json())
@@ -16,13 +22,11 @@ function App() {
       setPokemon(data)
         return data
       })
-      
-      console.log(pokemon)
   };
 
   return (
     <div className="App">
-      <Team pokemon={pokemon}/>
+      <Team pokemon={pokemon} team={team}/>
       <Pokedex pokemon={pokemon} pokemonSearch={pokemonSearch}/>
     </div>
   )
