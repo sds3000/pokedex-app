@@ -44,7 +44,7 @@ app.post('/poke', (req, res) => {
 app.put('/editpoke', (req, res) => { //need to hit edit button 2 times
     let pokemon = req.body;
     let {name, move1,move2,move3,move4,lvl} = pokemon
-    sql`UPDATE task SET name = ${name,move1,move2,move3,move4,lvl} WHERE name=${name} RETURNING *`.then(result => {
+    sql`UPDATE team SET name=${name},move1=${move1},move2=${move2},move3=${move3},move4=${move4},lvl=${lvl} WHERE name=${name} RETURNING *`.then(result => {
         res.send(result)
     })
 })

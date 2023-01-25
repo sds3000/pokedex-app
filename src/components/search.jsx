@@ -10,9 +10,7 @@ const Search = (props) => {
     let submitQuery = event => {
         event.preventDefault();
         props.pokemonSearch(query) //runs pokemonSearch
-        
     };
-
     // if(props.pokemon.forms[0]){
     //     return (
     //         <img src={props.pokemon.forms}></img>
@@ -23,10 +21,8 @@ const Search = (props) => {
     // }
     return (
     <div>
-        
         <form onSubmit={submitQuery} id="search">
             <input
-                
                 placeholder="Pokemon name"
                 value={query}// something else should go here
                 onChange={recordQuery}

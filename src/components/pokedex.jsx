@@ -9,15 +9,16 @@ const Pokedex = (props) => {
             method: "POST",
             body: JSON.stringify({name: props.pokemon.name}), //sets the body of the req
             headers: {"Content-Type": "application/json"} 
-        }).then((res) => res.json()).then((data) => { 
-            console.log('hi')
+        })
+        .then((res) => res.json())
+        .then((data) => { 
+            props.setAddedPoke(data)
         });
     }
     if(props.pokemon.height){
         return(
             <div>
                 <Search onSubmit={props.pokemonSearch} pokemonSearch={props.pokemonSearch} pokemon={props.pokemon}/>
-
                 <table> {/* displayse searched pokemon */}
                     <tr>
                         <th>No. </th>
